@@ -4,3 +4,6 @@
 
 [20230714싸피2](https://www.notion.so/07-14-7b43ec7ec9f44d8f9c57c4f8515f98e4?pvs=4)
 
+[20230717싸피](https://www.notion.so/2023-07-17-python-9ce1db2c074a4e9884a5fef0cfda7a2e?pvs=4)
+
+[20230717싸피2](https://www.notion.so/2023-07-17-58e481e4b2a84234b72504b3012e98f4?pvs=4)

@@ -7,3 +7,5 @@
 [20230717싸피](https://www.notion.so/2023-07-17-python-9ce1db2c074a4e9884a5fef0cfda7a2e?pvs=4)
 
 [20230717싸피2](https://www.notion.so/2023-07-17-58e481e4b2a84234b72504b3012e98f4?pvs=4)
+
+[20230718싸피](https://www.notion.so/2023-07-18-779933e1be754207bbd927709a63a5bc?pvs=4)

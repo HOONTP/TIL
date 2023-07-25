@@ -11,3 +11,5 @@
 [20230718싸피](https://www.notion.so/2023-07-18-779933e1be754207bbd927709a63a5bc?pvs=4)
 
 [20230719싸피](https://www.notion.so/2023-07-19-b5131aa311b244d8a8df9058d5a2ebef?pvs=4)
+
+[20230720싸피](https://www.notion.so/2023-07-20-if-for-while-6d8de875979644b19804ed193c166182?pvs=4)

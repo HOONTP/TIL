@@ -1,4 +1,4 @@
-# import sys
-# input = sys.stdin.readline
+import sys
+input = sys.stdin.readline
 
-# N = int(input())
+N = int(input())

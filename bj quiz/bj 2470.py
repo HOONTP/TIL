@@ -32,7 +32,7 @@ def first_case():
     return (num_list)
 
 case_list = first_case()
-result = 100000000
+result = 1000000000
 sum_case = 0
 result_case = ()
 
@@ -46,7 +46,7 @@ else:
         if abs(sum_case) < result:
             result = abs(sum_case)
             result_case = [n[0], n[1]]
-            result_case = sorted(result_case)
+        result_case = sorted(result_case)
     print(result_case[0], result_case[1])
 
 

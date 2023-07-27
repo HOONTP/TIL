@@ -34,18 +34,19 @@ def first_case():
 case_list = first_case()
 result = 1000000000
 sum_case = 0
-result_case = ()
+result_case = []
 
 if isinstance(case_list, tuple):
     print(case_list[0], case_list[1])
-elif isinstance(case_list, int):
-    print(case_list)
 else:
-    for n in case_list:
-        sum_case = n[0] + n[1]
+    for re in case_list:
+        if re[0] == re[1]:
+            case_list.remove(re)
+    for NN in case_list:
+        sum_case = NN[0] + NN[1]
         if abs(sum_case) < result:
             result = abs(sum_case)
-            result_case = [n[0], n[1]]
+            result_case = [NN[0], NN[1]]
         result_case = sorted(result_case)
     print(result_case[0], result_case[1])
 

@@ -1,8 +1,9 @@
 import sys
-import time
 input = sys.stdin.readline
+N = int(input())
+
+import time
 start_time = time.time()
-# N = int(input())
 
 T = int(input())
 

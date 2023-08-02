@@ -1,19 +1,54 @@
 T = int(input())
 
+def get_subsets(nums):
+    n = len(nums)
+    subsets = []
+
+    def generate_subset(index, subset):
+        if index == n:
+            if subset not in subsets:
+                subsets.append(subset)
+                return
+            else:
+                return
+        generate_subset(index + 1, subset + [nums[index]])
+        generate_subset(index + 1, subset)
+
+    generate_subset(0, [])
+    return subsets
+
+S = [i for i in range(1, 13)]
+subsets = get_subsets(S)
+
 for tc in range(1, T+1):
-    N = int(input())
-    lst = list(map(int, input().split()))
-    mn = lst[0]
-    mn_i = 0
-    mx = lst[0]
-    mx_i = 0
+    N, K = map(int, input().split())
+    cnt = 0
+    md_s = 0
 
-    for i in range(N):
-        if lst[i] < mn:
-            mn = lst[i]
-            mn_i = i
-        if lst[i] >= mx:
-            mx = lst[i]
-            mx_i = i
+    for i in subsets:
+        if len(i) == N and sum(i) == K:
+            cnt += 1
 
-    print(f'#{tc} {abs(mx_i-mn_i)}')
+    print(f'#{tc} {cnt}')
+
+
+
+    # for i in range(12-N+1):
+    #     for it in range(N-i):
+    #         for ic in range(N-i-it):
+    #             md_s = A[i] + A[i+it] + A[i+it+ic]
+    #         if md_s == K:
+    #             cnt += 1
+
+    # 1 1 1 1 1 1 1 1 1 1 1 1
+    # 1 1 1 1 1 1 1 1 1 1 1
+    # 1 1 1 1 1 1 1 1 1 1
+    # 1 1 1 1 1 1 1 1 1
+    # 1 1 1 1 1 1 1 1
+    # 1 1 1 1 1 1 1
+    # 1 1 1 1 1 1
+    # 1 1 1 1 1
+    # 1 1 1 1
+    # 1 1 1
+    # 1 1
+    # 1

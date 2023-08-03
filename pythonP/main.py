@@ -1,54 +1,31 @@
 T = int(input())
 
-def get_subsets(nums):
-    n = len(nums)
-    subsets = []
-
-    def generate_subset(index, subset):
-        if index == n:
-            if subset not in subsets:
-                subsets.append(subset)
-                return
-            else:
-                return
-        generate_subset(index + 1, subset + [nums[index]])
-        generate_subset(index + 1, subset)
-
-    generate_subset(0, [])
-    return subsets
-
-S = [i for i in range(1, 13)]
-subsets = get_subsets(S)
-
 for tc in range(1, T+1):
-    N, K = map(int, input().split())
-    cnt = 0
-    md_s = 0
+    N, M = map(int, input().split())
+    lst = [list(map(int, input().split())) for _ in range(N)]
+    print(lst)
+    row = N
+    col = M
 
-    for i in subsets:
-        if len(i) == N and sum(i) == K:
-            cnt += 1
+    di = [-1, 0, 1, 0]
+    dj = [0, 1, 0, -1]
 
-    print(f'#{tc} {cnt}')
+    max_v = 0
+
+    for i in range(row):
+        for j in range(col):
+            s = lst[i][j]
+            for k in range(4):
+                for s_v in range(1, s + 1):
+                    ni = i + s_v * di[k]
+                    nj = j + s_v * dj[k]
+                    if 0 <= ni < row and 0 <= nj < col:
+                        print(lst[ni][nj])
+                        s += lst[ni][nj]
+            print(s)
+            print(i,j)
+            if max_v < s:
+                max_v = s
 
 
-
-    # for i in range(12-N+1):
-    #     for it in range(N-i):
-    #         for ic in range(N-i-it):
-    #             md_s = A[i] + A[i+it] + A[i+it+ic]
-    #         if md_s == K:
-    #             cnt += 1
-
-    # 1 1 1 1 1 1 1 1 1 1 1 1
-    # 1 1 1 1 1 1 1 1 1 1 1
-    # 1 1 1 1 1 1 1 1 1 1
-    # 1 1 1 1 1 1 1 1 1
-    # 1 1 1 1 1 1 1 1
-    # 1 1 1 1 1 1 1
-    # 1 1 1 1 1 1
-    # 1 1 1 1 1
-    # 1 1 1 1
-    # 1 1 1
-    # 1 1
-    # 1
+    print(f'#{tc} {max_v}')

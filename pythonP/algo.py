@@ -1,28 +1,14 @@
-<<<<<<< HEAD
-=======
 import sys
 input = sys.stdin.readline
 
-S = input().strip()
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    arr = [list(map(int, input().split())) for _ in range(N)]
 
-def get_subsets(nums):
-    n = len(nums)
-    subsets = []
+    new_arr = [[0] * N for _ in range(N)]
+    for i in range(N):
+        for j in range(N):
+            new_arr[j][N - 1 - i] = arr[i][j]
 
-    def generate_subset(index, subset):
-        if index == n:
-            if subset not in subsets: #True로 해도 같나?
-                subsets.append(subset)
-                return
-            else:
-                return
-        generate_subset(index + 1, subset + [nums[index]])  # 원소를 선택한 경우
-        generate_subset(index + 1, subset)  # 원소를 선택하지 않은 경우
-    generate_subset(0, [])
-    return subsets
-
-print(S)
-subsets = get_subsets(S)
-print(subsets)
-print(len(subsets))
->>>>>>> c644f359bb14085026f39f5f509b882f0d6a7c24
+    print(new_arr)

@@ -5,7 +5,7 @@ def search(t_page, sr_page):
     end_point = t_page
     cnt = 0
     mid_point = (s_point + t_page) // 2
-    while mid_point <= end_point:
+    while mid_point <= end_point: #start <= end로 해야하는듯?
         if mid_point == sr_page:
             return cnt
         if mid_point < sr_page:

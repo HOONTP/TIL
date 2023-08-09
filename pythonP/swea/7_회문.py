@@ -28,3 +28,27 @@ for tc in range(1, T+1):
                     print(lst[i+l][j], end='')
                 print()
                 break
+
+    # for col in range(8 - N + 1):
+    #     for row in range(8):
+    #         palindrome = ''
+    #         for cnt in range(N):
+    #             palindrome += MAP[col + cnt][row]
+    #         if palindrome == palindrome[::-1]:
+    #             result += 1
+
+
+    # zip(*lst) <= 90도 회전된다. zip은 같은 index끼리 합친다.
+
+    # for t in range(1, 11):
+    #     N = int(input())
+    #     MAP = list(input() for _ in range(8))
+    #     MAP += zip(*MAP)
+    #     result = 0
+    #
+    #     for m in MAP:
+    #         for i in range(8 - N + 1):
+    #             if m[i: i + N] == m[i: i + N][::-1]:
+    #                 result += 1
+    #
+    #     print(f'#{t} {result}')

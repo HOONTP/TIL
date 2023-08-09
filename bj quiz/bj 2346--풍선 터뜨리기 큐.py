@@ -31,5 +31,3 @@ while que_lst:
         result.append(que_lst.pop())
 
 print(*result)
-
-

@@ -17,3 +17,11 @@ for tc in range(1, T+1):
             mx_result = dic_full[j]
     print(f'#{tc}', mx_result)
 
+# T = int(input())
+#
+# for t in range(1, T + 1):
+#     str1 = input()
+#     str2 = input()
+#     dic = {w : str2.count(w) for w in str2 if w in str1 }
+#     result = max(dic.values())
+#     print(f'#{t} {result}')

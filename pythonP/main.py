@@ -1,22 +1,23 @@
 T = int(input())
 
-for tc in range(1, T+1):
+def SUM(x, y):
+    if x == 0 or y == 0:
+        arr[x][y] = 1
+
+    else:
+        arr[x][y] = arr[x - 1][y - 1] + arr[x - 1][y]
+    return arr[x][y]
+
+for t in range(1, T+1):
     N = int(input())
-    lst = []
-    for _ in range(N):
-        A, M = input().split()
-        m = int(M)
-        for i in range(m):
-            lst.append(A)
+    arr = [[0] * N for _ in range(N)]
 
-    cnt = 0
+    for i in range(N):
+        for j in range(N):
+            if i < j:
+                continue
+            else:
+                SUM(i, j)
 
-    print(f'#{tc}')
-    for i in lst:
-        print(i, end='')
-        cnt += 1
-        if cnt == 10:
-            print()
-            cnt = 0
-    if cnt != 0: # 여기 걍 print() 써도 제출된다.
-        print()
+        print(*arr[i][:i+1])
+

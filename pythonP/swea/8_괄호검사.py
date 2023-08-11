@@ -11,12 +11,14 @@ for tc in range(1, T+1):
     while i < n:
         if N[i] == '{' or N[i] == '(':
             wait_lst.append(N[i])
+
         elif N[i] == '}':
             if wait_lst[-1] == '{':
                 wait_lst.pop()
             else:
                 result = 0
                 break
+
         elif N[i] == ')':
             if wait_lst[-1] == '(':
                 wait_lst.pop()

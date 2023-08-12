@@ -1,6 +1,6 @@
 import sys
 input = sys.stdin.readline
-
+# 더 간단한 코드가 있음.
 def steps(k):
     for n in range(2, k+1):
         dic_[n, 'on', 'off'] = max(dic_[n-1, 'on', 'on'], dic_[n-1, 'off', 'on']) # 어차피 다음은 딛어야 하니까.

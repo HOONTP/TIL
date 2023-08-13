@@ -6,7 +6,7 @@ N = int(input())
 lst = [1] * 10
 lst[0] = 0
 new_lst = [0] * 10
-new_lst[:] = lst[:]
+new_lst[:] = lst[:]#리스트 복사 주의 [:] 빼면 안된다.
 
 for n in range(N-1):
     for i in range(10):

@@ -7,6 +7,8 @@ def find(arr, S):
     stack = [S]
     visted = []
     while stack:
+        # print(stack)
+        # print(visted)
         start = stack.pop()
         visted.append(start)
         for k in range(4):

@@ -1,5 +1,6 @@
 import sys
 input = sys.stdin.readline
+
 def draw(lst):
     n = len(lst)//3
     if lst == ['-']:

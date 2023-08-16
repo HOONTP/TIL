@@ -1,33 +1,55 @@
 import sys
 input = sys.stdin.readline
+import pprint
 
-di = [-1, 0, 1, 0]
-dj = [0, 1, 0, -1]
+def dfs(arr, n):
+    global result
+    # print(n)
+    stack = []
+    stack.append(n)
+    visted[n] = 1
+    while stack:
+        # print(stack)
+        # print(visted)
+        n = stack.pop()
+        if visted[n] == 2:
+            for w in arr[n]:
+                if visted[w] == 2:
+                    result = -1
+                    return
+                elif visted[w] == 0:
+                    visted[w] = 1
+                    stack.append(w)
+
+        elif visted[n] == 1:
+            for w in arr[n]:
+                if visted[w] == 1:
+                    result = -1
+                    return
+                elif visted[w] == 0:
+                    visted[w] = 2
+                    stack.append(w)
 
 T = int(input())
 
 for _ in range(T):
-    M, N, K = map(int, input().split())
-    arr = [[0]*(M) for _ in range(N)]
+    V, E = map(int, input().split()) # 점 개수, 선 개수
 
-    for _ in range(K):
+    arr = [[] for _ in range(V+1)]
+    for _ in range(E):
         a, b = map(int, input().split())
-        arr[b][a] = 1
+        arr[a].append(b)
+        arr[b].append(a)
+
+    # pprint.pprint(arr)
 
     result = 0
-    for i in range(N):
-        for j in range(M):
-            if arr[i][j] == 1:
-                stack = [[i, j]]
-                result += 1
-                while stack:
-                    n = stack.pop()
-                    if arr[n[0]][n[1]] == 1:
-                        arr[n[0]][n[1]] = 0
-                        for k in range(4):
-                            ni = n[0] + di[k]
-                            nj = n[1] + dj[k]
-                            if 0 <= ni < N and 0 <= nj < M:
-                                if arr[ni][nj] == 1:
-                                    stack.append([ni, nj])
-    print(result)
+    visted = [0] * (V + 1)
+
+    for i in range(1, V+1):
+        dfs(arr, i)
+        if result == -1:
+            print('NO')
+            break
+    else:
+        print('YES')

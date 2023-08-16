@@ -25,7 +25,6 @@ for tc in range(1, T+1):
         nums = []
         nums.append(0)
         check_origin(0, 1)
-        print(nums)
         lst = [lst[k] for k in range(len(lst)) if k not in nums]
         cnt += 1
 

@@ -1,20 +1,33 @@
 import sys
 input = sys.stdin.readline
-# import pprint
 
-T = int(input())
+def backT(visted, index):
+    if len(visted) == M:
+        result.append([i for i in visted])
+        return
 
-for _ in range(T):
-    N = int(input())
-    lst = list(map(int, input().split()))
-    result = [0]*N
-    mid = [0]*N
-    print(lst)
-#현재 값보다 다음 연산이 작을 경우
-
-    print(mid, 'md')
-    print(result, 're')
+    for i in range(N):
+        if i not in index:
+            visted.append(lst[i])
+            index.append(i)
+            backT(visted, index)
+            visted.pop()
+            index.pop()
 
 
-    # 7 12 22 34
-    # 19 41 75
+
+N, M = map(int, input().split())
+
+lst = list(map(int, input().split()))
+visted = []
+index = []
+result = []
+lst.sort()
+
+backT(visted, index)
+
+print(result)
+result = set(i for i in result)
+# result = sorted(result)
+
+print(result)

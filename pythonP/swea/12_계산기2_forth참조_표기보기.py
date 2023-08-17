@@ -64,3 +64,42 @@ for tc in range(1, T+1):
             print(f'#{tc}', 'error')
     else:
         print(f'#{tc}', 'error')
+
+'''표기법은 계싼기 1에
+T = 10
+
+for t in range(1, T+1):
+    input()
+    STR = input()
+
+    STACK = []
+    postfix = ''
+
+    for s in STR:
+        #숫자인경우 후위표기식에 추가
+        if s.isdecimal():
+            postfix += s
+        else: #연산자 인경우
+            while STACK and STACK[-1] == '*': #스택의 연산자가 *이면 높거나 같다
+                postfix += STACK.pop()
+            STACK.append(s) #현재 연산자를 스택에 추가
+
+    while STACK:
+        postfix += STACK.pop()
+
+    result = []
+
+    for p in postfix:
+        if p.isdecimal():
+            result.append(int(p))
+        else:
+            num2 = result.pop()
+            num1 = result.pop()
+            if p == '+':
+                result.append(num1 + num2)
+            elif p == '*':
+                result.append(num1 * num2)
+
+
+    print(f'#{t}', *result)
+'''

@@ -3,26 +3,23 @@ input = sys.stdin.readline
 
 def backT(visted):
     if len(visted) == M:
+        # print(visted)
         result.append(' '.join(str(i) for i in sorted(visted)))
         return
-
     for i in lst:
-        visted.append(i)
-        backT(visted)
-        visted.pop()
-
-
+        if i not in visted:
+            visted.append(i)
+            backT(visted)
+            visted.pop()
 
 N, M = map(int, input().split())
+lst = list(range(1, N+1))
 
-lst = list(map(int, input().split()))
 visted = []
 result = []
-
-lst.sort()
 backT(visted)
 
 result = set(result)
-result = sorted(result)
-for k in result:
-    print(k)
+result = sorted(result)# 이거 안해주면 pypy는 통과 python은  fail 뜬다.
+for i in result:
+    print(i)

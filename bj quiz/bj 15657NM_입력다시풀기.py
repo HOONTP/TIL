@@ -1,14 +1,15 @@
 import sys
 input = sys.stdin.readline
 
-def backT(visted):
+def backT(visted, n):
     if len(visted) == M:
         result.append(' '.join(str(i) for i in sorted(visted)))
         return
 
-    for i in lst:
-        visted.append(i)
-        backT(visted)
+    for i in range(N):
+        if i > n:
+        visted.append(lst[i])
+        backT(visted, i)
         visted.pop()
 
 
@@ -20,7 +21,7 @@ visted = []
 result = []
 
 lst.sort()
-backT(visted)
+backT(visted, 0)
 
 result = set(result)
 result = sorted(result)

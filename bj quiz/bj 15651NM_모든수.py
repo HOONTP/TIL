@@ -3,7 +3,7 @@ input = sys.stdin.readline
 
 def backT(visted):
     if len(visted) == M:
-        result.append(' '.join(str(i) for i in sorted(visted)))
+        print(*visted)
         return
 
     for i in lst:
@@ -15,14 +15,7 @@ def backT(visted):
 
 N, M = map(int, input().split())
 
-lst = list(map(int, input().split()))
+lst = (list(range(1,N+1)))
 visted = []
-result = []
 
-lst.sort()
 backT(visted)
-
-result = set(result)
-result = sorted(result)
-for k in result:
-    print(k)

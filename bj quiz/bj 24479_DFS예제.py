@@ -13,13 +13,13 @@ def dfs(V, E, R):
         for w in E[R]:
             if visted[w] == 0:
                 stack.append(R)
-                R = w
+                R = w # 이게 문제인건가?
                 visted[R] = 1
                 result[R] = i
                 i += 1
                 break
         else:
-            if stack:
+            if stack:# 현재 위치를 한 번 더 탐색하게 된다.
                 R = stack.pop()
             else:
                 break

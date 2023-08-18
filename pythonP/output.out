@@ -1,5 +1,7 @@
-Traceback (most recent call last):
-[[1, 7], [1, 9], [1, 9], [7, 1], [7, 9], [7, 9], [9, 1], [9, 7], [9, 9], [9, 1], [9, 7], [9, 9]]
-  File "C:\Users\82104\OneDrive\πŸ≈¡ »≠∏È\TIL\pythonP\algo.py", line 30, in <module>
-    result = set(i for i in result)
-TypeError: unhashable type: 'list'
+1 7
+1 9
+7 1
+7 9
+9 1
+9 7
+9 9

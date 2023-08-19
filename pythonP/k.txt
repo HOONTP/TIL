@@ -4,5 +4,5 @@ input = sys.stdin.readline
 
 import pprint
 
-di = [-1,0,1,0]
-dj = [0,1,0,-1]
+di = [-1, 0, 1, 0]
+dj = [0, 1, 0, -1]

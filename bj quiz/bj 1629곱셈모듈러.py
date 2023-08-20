@@ -6,6 +6,9 @@ input = sys.stdin.readline
 합의 모듈러 연산: (a + b) % c = ((a % c) + (b % c)) % c
 차의 모듈러 연산: (a - b) % c = ((a % c) - (b % c)) % c
 곱의 모듈러 연산: (a * b) % c = ((a % c) * (b % c)) % c
+
+a * b = (k1c + r1) * (k2c + r2) = (k1k2c^2 + k1r2c + k2r1c) + r1r2
+
 나눗셈의 모듈러 연산: (a / b) % c ≠ ((a % c) / (b % c)) % c (나눗셈의 경우 모듈러 성질이 성립하지 않음)
 '''
 

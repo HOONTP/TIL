@@ -1,17 +1,19 @@
 T = int(input())
-#몇 개 인지가 아니라 가능한지라서 가장 먼저 만난 애 기준으로 안되면 불가능 이네.
 for tc in range(1, T+1):
-    N, K = map(int, input().split())
+    N, M = map(int, input().split())
     lst = list(map(int, input().split()))
-    pasw = list(map(int, input().split()))
-    result = -1
-    j = 0
-    for i in lst:
-        if pasw[j] == i:
-            j += 1
-        if j == K:
-            result = 1
-            break
-    if j != K:
-        result = 0
-    print(f'#{tc}', result)
+    arr = [list(map(int, input().split())) for _ in range(N)]
+
+    result = []
+    for i in range(N):
+        val = 1
+        sums = 0
+        for j in range(M):
+            if arr[i][j] == lst[j]:
+                sums += val
+                val += 1
+            else:
+                val = 1
+        result.append(sums)
+
+    print(f'#{tc}', max(result)-min(result))

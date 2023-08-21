@@ -14,7 +14,7 @@ def infix(exp):#후위표기
             while stack and stack[-1] != '(':
                 full.append(stack.pop())
             stack.pop()
-        else:
+        else:#여기가 이해가 안가네.
             while stack and stack[-1] != '(' and pre[A] <= pre.get(stack[-1], 0):
                 full.append(stack.pop())
             stack.append(A)

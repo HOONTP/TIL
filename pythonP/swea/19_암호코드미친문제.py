@@ -71,28 +71,27 @@ for tc in range(1, T+1):
 
     for full in get_nd:
         result = []
-        m = len(full) - 1
-        F = 0
-        p = 1
-        i = m
-        while 7*8*p < m: # 8자리 7칸 배율p 가 총 길이보다 길어지면 탈출
-            dic_ = up(p) # 배율적용 1배율 부터
+        m = len(full) - 1 #index 맥시멈 값
+        p = 1 # 배율
+        i = m # 순회하기 위한 i
+        while 7*8*p < m:          # 8자리 7칸 배율p 가 총 길이보다 길어지면 탈출
+            dic_ = up(p)          # 배율적용 1배율 부터
 
             while 0 <= i:
                 n = full[i-7*p+1:i+1] # 뒤에서 부터 한칸씩 탐색
-                if n in dic_: # 코드와 겹치는 구간 발생시 진입
+                if n in dic_:         # 코드와 겹치는 구간 발생시 진입
                     while 0 <= i:
                         a = full[i-7*p+1:i+1]
-                        for k in dic_: # 어떤 코드와 겹치는지 검토
+                        for k in dic_:            # 어떤 코드와 겹치는지 검토
                             if k == a:
                                 result.append(dic_.index(k))
-                                i -= 7*p # 코드를 찾았으니 앞으로 점프
+                                i -= 7*p          # 코드를 찾았으니 앞으로 점프
                                 break
-                        else: # 더이상 같은게 없을 때
+                        else:                    # 더이상 같은게 없을 때
                             if len(result) == 8: # 담은 result길이가 8이면
                                 result = tuple(result) # tuple 형태로 담는다
-                                total.add(result) # set에는 list가 담기지 않음.
-                            result = [] #result 리셋
+                                total.add(result)      # set에는 list가 담기지 않음.
+                            result = []                #result 리셋
                             break
                 i -= 1
             result = []
@@ -108,7 +107,7 @@ for tc in range(1, T+1):
             sums += fin[i*2+1]*3
             sums += fin[i*2]
         if sums % 10 == 0:
-            mx_sum += sum(fin) # 검증된 값 저장
+            mx_sum += sum(fin) # 검증된 경우 값 저장
 
     if mx_sum == 0:
         print(f'#{tc}', 0)

@@ -4,8 +4,7 @@ dj = [0, 1, 0, -1]
 '''
 하나를 건넜을 때 포를 잡을 수 있다면 잡아라. 잡았을 때 얘를 더 이상 체크하지 않는 방법은 외부의 배열을 끌어와서 변경해버리면 되나?
 '''
-def backT(S, n): # n은 3이면 그만 그만 ? 3번째 시행 후 그만
-    global cnt
+def backT(S, n, arr, v): # n은 3이면 그만 그만 ? 3번째 시행 후 그만
     if n == 3:
         return
 
@@ -19,31 +18,39 @@ def backT(S, n): # n은 3이면 그만 그만 ? 3번째 시행 후 그만
                         i = ni + di[k] * w
                         j = nj + dj[k] * w
                         if 0<= i <N and 0<= j <N:
-                            if arr[i][j] == 0 or arr[i][j] == 2:
-                                backT((i, j), n+1)
-                            elif arr[i][j] == 1 and (i, j) not in result:
-                                cnt += 1
-                                result.append((i, j))
-                                backT((i, j), n+1)
+                            if arr[i][j] == 0:
+                                backT((i, j), n+1, arr, v)
+                            elif arr[i][j] == 1 and (i, j) not in v:
+                                result.add((i, j))
+
+                                arr[i][j] = 0
+                                v.append((i, j))
+                                backT((i, j), n+1, arr, v)
+                                arr[i][j] = 1
+                                v.pop()
+
                                 break
-                            else:
-                                break
-                        else:
+                            # else:
+                            #     break
+                        else: # 범위 오바
                             break
-                    else:
-                        break
+                    break
             else:#범위 오버시
                 break
 
 for tc in range(1, T+1):
     N = int(input())
-    arr = [list(map(int, input().split())) for _ in range(N)]
+    lst = [list(map(int, input().split())) for _ in range(N)]
 
     for i in range(N):
         for j in range(N):
-            if arr[i][j] == 2:
+            if lst[i][j] == 2:
                 S = (i, j)
     cnt = 0
-    result = []
-    backT(S, 0)
-    print(f'#{tc}', cnt)
+    result = set()
+    lst[S[0]][S[1]] = 0
+    visted = []
+
+
+    backT(S, 0, lst, visted)
+    print(f'#{tc}', len(result))

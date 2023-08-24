@@ -15,31 +15,34 @@ def check(e): # V는 A팀 B는 남은 팀
     if len(v) == len(e):
         print('yes')
     pass
-def bfs(V, E):# 1개의 마을 기준으로 본인 일때 + 무언가 담아질때 계속해서 나머지와 분리 되는지 검토 가능?
-    V.append(E.pop(0)) # 0 / 1 2 3 4
 
-    while V:
-        n = V.pop(0)
-        for i in range(N):
-            if arr[n][i] == 1:
-                V.append(i)
-                E.remove(i)
-                bfs(V, E)
-                check(E)
-                V.pop()
-                E.append(i)
-    pass
+def diff(E):
+    total_vot = len(E)
+
+    for i in range(1 << total_vot):
+        A_group = []
+        B_group = []
+
+        for j in range(total_vot):
+            if i & ( 1 << j ):
+                A_group.append(E[j])
+            else:
+                B_group.append(E[j])
+
+        if A_group and B_group:
+            check(A_group)
+            check(B_group)
+
+
+
 # 아 부분집합이 훨씬 덜 헷갈리 겠는데 너무 하기 싫네에에에에에
 for tc in range(1, T+1):
     N = int(input())
 
     arr = [list(map(int, input().split())) for _ in range(N)]
     lst = list(map(int, input().split()))
-    print(arr)
-    print(lst)
 
-    visted = []
-    other = list(range(N))
+    all = list(range(N))
     chance = []
 
-    bfs(visted, other)
+    diff(all)

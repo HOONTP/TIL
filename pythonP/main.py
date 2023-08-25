@@ -1,7 +1,5 @@
-T = int(input())
 
-for tc in range(1, T+1):
-    MS, MA = map(int, input().split())
-    N, L = map(int, input().split())
-    arr = [list(map(int, input().split())) for _ in range(N)]
-    print(arr)
+"""
+터널 없이 경로마다 최소값 구한 다음
+터널을 탄 경우를 추가하여 다시 구해야하나? => 그 다음 경로들의 최소값이 모두 변경된다.
+"""

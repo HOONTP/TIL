@@ -8,7 +8,7 @@
 di = [-1, 0, 1, 0]
 dj = [0, -1, 0, 1]
 
-def bfs(S):
+def bfs(S): # ㅇㅣ 로직 자체가 문제인가?
     n = S
 
     for k in range(4):
@@ -26,6 +26,7 @@ def bfs(S):
 
     if dict_lst[n[0]][n[1]]:
         for A in dict_lst[n[0]][n[1]]:
+            print(A)
             if lst[A[0]][A[1]] > A[2] + lst[n[0]][n[1]]:
                 lst[A[0]][A[1]] = A[2] + lst[n[0]][n[1]]
 
@@ -62,6 +63,8 @@ for tc in range(1, T+1):
     #     for i in range(N):
     #         for j in range(N):
     #             bfs((i, j))
+    real_bfs()# 왜 이것도 4번하면 통과되는거지?
+    real_bfs()
     real_bfs()
     real_bfs()
     print(f'#{tc}', lst[-1][-1])

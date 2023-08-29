@@ -1,4 +1,6 @@
-Traceback (most recent call last):
-  File "C:/Users/SSAFY/Desktop/TIL/pythonP/algo.py", line 16, in <module>
-    sums = count_lst[0] + math.comb(count_lst[0], 2)
-AttributeError: module 'math' has no attribute 'comb'
+2
+3
+4
+2
+2
+4

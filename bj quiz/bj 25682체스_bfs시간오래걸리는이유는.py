@@ -1,7 +1,7 @@
 import sys
 input = sys.stdin.readline
 from collections import deque
-
+#시간이 오래걸리는 이유가 뭘까 visted 때문인가 세트로 했더니 메모리초과뜸
 DIJ = [(1,0), (0,1)]
 
 N, M, K = map(int, input().split())
@@ -12,7 +12,7 @@ W_lst = [[0]*(M+1) for _ in range(N+1)]
 
 q = deque()
 q.append((1, 1))
-visted = {(1, 1)}
+visted = [(1, 1)]
 
 while q:
     n = q.popleft()
@@ -36,7 +36,7 @@ while q:
         nj = j + k[1]
         if ni <= N and nj <= M and (ni, nj) not in visted:
             q.append((ni, nj))
-            visted.add((ni, nj))
+            visted.append((ni, nj))
 
 mn = 999999999
 for i in range(1, N-K+2): #인덱스가 너무 복잡한데,,

@@ -1,6 +1,36 @@
 import sys
 input = sys.stdin.readline
-sys.setrecursionlimit(10**9) #그냥 이런식으로 깊이를 넓히는게 어딧냐고;
+
+sen = input().strip()
+N = len(sen)
+
+mid = ''
+sums = 0
+mid_sums = 0
+for S in range(N-1, -1, -1):
+    if sen[S].isdigit():
+        mid = sen[S] + mid
+    elif sen[S] == '+':
+        mid_sums += int(mid)
+        mid = ''
+    elif sen[S] == '-':
+        mid_sums += int(mid)
+        mid = ''
+
+        sums -= mid_sums
+        mid_sums = 0
+else:
+    sums += int(mid)#제일 앞쪽 값은 무조건 +
+sums += mid_sums# '-'를 만나지 못한 '+' 값
+print(sums)
+
+
+
+
+
+
+
+
 '''
 방향에 따라 4^5회의 경우의 수가 나옴
 진행 방향으로 모든 수를 다 옮겨야하니, 방향벡터를 인자로 받는 함수가 있으면 좋을듯.

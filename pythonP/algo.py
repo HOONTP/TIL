@@ -2,33 +2,19 @@ import sys
 input = sys.stdin.readline
 
 sen = input().strip()
-N = len(sen)
-
-mid = ''
-sums = 0
-mid_sums = 0
-for S in range(N-1, -1, -1):
-    if sen[S].isdigit():
-        mid = sen[S] + mid
-    elif sen[S] == '+':
-        mid_sums += int(mid)
-        mid = ''
-    elif sen[S] == '-':
-        mid_sums += int(mid)
-        mid = ''
-
-        sums -= mid_sums
-        mid_sums = 0
+boom = input().strip()
+n_count = len(boom)
+stack = []
+for i in sen:
+    stack.append(i)
+    if i == boom[-1]:
+        if ''.join(stack[-n_count:]) == boom:# [index:] 에서는 index가 범위를 넘어도 ㄱㅊ 모두 추출
+            for _ in range(n_count):
+                stack.pop()
+if stack:
+    print(''.join(stack))
 else:
-    sums += int(mid)#제일 앞쪽 값은 무조건 +
-sums += mid_sums# '-'를 만나지 못한 '+' 값
-print(sums)
-
-
-
-
-
-
+    print("FRULA")
 
 
 '''

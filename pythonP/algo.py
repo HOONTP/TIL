@@ -1,54 +1,11 @@
 import sys
 input = sys.stdin.readline
 sys.setrecursionlimit(10**9) #그냥 이런식으로 깊이를 넓히는게 어딧냐고;
-
-def find(x):
-    global cnt
-    # print(x, dic_)
-    # cnt += 1
-    if dic_[x] != x:
-        dic_[x] = find(dic_[x])
-        # cnt += point[x]
-        # point[x] = cnt
-    return dic_[x]
-
-T = int(input())
-
-for _ in range(T):
-    N = int(input())
-    dic_ = {}
-    point = {}
-    for _ in range(N):
-        a, b = input().split()
-        if dic_.get(a) == None and dic_.get(b) == None:
-            dic_[a] = a + b
-            dic_[b] = a + b
-            dic_[a+b] = a + b
-            point[a] = 1
-            point[b] = 1
-            point[a+b] = 2
-            print(2)
-        elif dic_.get(b) == None:
-            cnt = 0
-            A = find(a)
-            dic_[b] = a
-            point[A] += 1
-            print(point[A])
-        elif dic_.get(a) == None:
-            cnt = 0
-            B = find(b)
-            dic_[a] = b
-            point[B] += 1
-            print(point[B])
-        else:
-            cnt = 0
-            A = find(a)
-            B = find(b)
-            if A != B:
-                dic_[A] = B
-                total = point[A] + point[B]
-                point[A] = total
-                point[B] = total
-                print(total)
-            else:
-                print(point[A])
+'''
+방향에 따라 4^5회의 경우의 수가 나옴
+진행 방향으로 모든 수를 다 옮겨야하니, 방향벡터를 인자로 받는 함수가 있으면 좋을듯.
+진행 할 방향에서부터 순회가 들어가야함 그래야 먼저 합쳐지는 애들부터 순회
+벽은 패스 그 다음인자를 순회하다가 0이 아닌 수를 만나면 해당 자리를 0으로 바꾸고
+0이 아닌 수 혹은 벽을 만날 때까지 탐색하다가 만나는 순간 같은 수라면 그 자리에 더하고
+아니라면 제자리.
+'''

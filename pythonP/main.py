@@ -1,3 +1,39 @@
+from collections import deque
+
+T = int(input())
+dij = [(-1,0), (0,1), (1,0), (0,-1)]
+
+for tc in range(1, T+1):
+    N, M = map(int, input().split())
+    arr = []
+    q = deque()
+    for i in range(N):
+        arr.append(input())
+        for j in range(M):
+            if arr[i][j] == 'W':
+                q.append(((i, j), 0))
+
+    sums = 0
+    visted = set()
+    while q:
+        n, cnt = q.popleft()
+        for k in dij:
+            if 0<= n[0] + k[0] < N and 0 <= n[1] + k[1] < M and arr[n[0] + k[0]][n[1] + k[1]] == 'L' and (n[0] + k[0], n[1] + k[1]) not in visted:
+                sums += cnt + 1
+                q.append(((n[0] + k[0], n[1] + k[1]), cnt + 1))
+                visted.add((n[0] + k[0], n[1] + k[1]))
+
+    print(f'#{tc}', sums)
+
+    # ni = n[0] + k[0]
+    # nj = n[1] + k[1]
+    # if 0 <= ni < N and 0 <= nj < M and arr[ni][nj] == 'L':
+    #     arr[ni][nj] = 1
+    #     sums += n[2] + 1
+    #     q.append((ni, nj, n[2] + 1))
+
+
+
 # T = int(input())
 
 # for tc in range(1, T+1):
@@ -56,37 +92,3 @@
 
 # def bfs(q):
 #     global sums
-
-from collections import deque
-
-T = int(input())
-dij = [(-1,0), (0,1), (1,0), (0,-1)]
-
-for tc in range(1, T+1):
-    N, M = map(int, input().split())
-    arr = []
-    q = deque()
-    for i in range(N):
-        arr.append(list(input()))
-        for j in range(M):
-            if arr[i][j] == 'W':
-                arr[i][j] = 0
-                q.append((i, j))
-
-    sums = 0
-    while q:
-        n = q.popleft()
-        for k in dij:
-            if 0<= n[0] + k[0] < N and 0 <= n[1] + k[1] < M and arr[n[0] + k[0]][n[1] + k[1]] == 'L':
-                arr[n[0] + k[0]][n[1] + k[1]] = arr[n[0]][n[1]] + 1
-                sums += arr[n[0]][n[1]] + 1
-                q.append((n[0] + k[0], n[1] + k[1]))
-
-    print(f'#{tc}', sums)
-
-    # ni = n[0] + k[0]
-    # nj = n[1] + k[1]
-    # if 0 <= ni < N and 0 <= nj < M and arr[ni][nj] == 'L':
-    #     arr[ni][nj] = 1
-    #     sums += n[2] + 1
-    #     q.append((ni, nj, n[2] + 1))

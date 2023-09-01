@@ -1,20 +1,92 @@
+# T = int(input())
+
+# for tc in range(1, T+1):
+#     N, M = map(int, input().split())
+#
+#     arr = [list(input()) for _ in range(N)]
+#     # count_lst = [[-1]*M for _ in range(N)]
+#     W_lst = []
+#     L_lst = []
+#
+#     for i in range(N):
+#         for j in range(M):
+#             if arr[i][j] == 'W':
+#                 W_lst.append((i, j))
+#             else:
+#                 L_lst.append((i, j))
+#     # W_lst.sort(lambda x:x[0]+x[1])
+#     # L_lst.sort(lambda x:x[0]+x[1])
+#     # print(W_lst)
+#     # print(L_lst)
+#
+#     sums = 0
+#
+#     for l in L_lst:
+#         mid = 999999999
+#         for k in W_lst:
+#             di = k[0]-l[0]
+#             dj = k[1]-l[1]
+#             if abs(di)+abs(dj) < mid: #mid
+#                 mid = abs(di)+abs(dj)
+#             if mid == 1:
+#                 break
+#
+#             # if count_lst[l[0]][l[1]] == 1:
+#             #     break
+#             # di = k[0]-l[0]
+#             # dj = k[1]-l[1]
+#             # if count_lst[l[0]][l[1]] == -1:
+#             #     count_lst[l[0]][l[1]] = abs(di) + abs(dj)
+#             #     continue
+#             # if abs(di)+abs(dj) < count_lst[l[0]][l[1]]: #mid
+#             #     # mid = abs(di)+abs(dj)
+#             #     count_lst[l[0]][l[1]] = abs(di) + abs(dj)
+#             # else:
+#             #     break
+#         sums += mid
+#
+#     # print(count_lst)
+#     #
+#     # for i in range(N):
+#     #     for j in range(M):
+#     #         if count_lst[i][j] != 999999999:
+#     #             sums += count_lst[i][j]
+#     print(f'#{tc}', sums)
+
+
+# def bfs(q):
+#     global sums
+
+from collections import deque
+
 T = int(input())
+dij = [(-1,0), (0,1), (1,0), (0,-1)]
 
 for tc in range(1, T+1):
-    N = int(input())
-    time = []
-    for _ in range(N):
-        time.append(list(map(int, input().split())))
+    N, M = map(int, input().split())
+    arr = []
+    q = deque()
+    for i in range(N):
+        arr.append(list(input()))
+        for j in range(M):
+            if arr[i][j] == 'W':
+                arr[i][j] = 0
+                q.append((i, j))
 
-    time.sort()
+    sums = 0
+    while q:
+        n = q.popleft()
+        for k in dij:
+            if 0<= n[0] + k[0] < N and 0 <= n[1] + k[1] < M and arr[n[0] + k[0]][n[1] + k[1]] == 'L':
+                arr[n[0] + k[0]][n[1] + k[1]] = arr[n[0]][n[1]] + 1
+                sums += arr[n[0]][n[1]] + 1
+                q.append((n[0] + k[0], n[1] + k[1]))
 
-    cnt = 1
-    s = time[0][0]
-    e = time[0][1]
-    for i in range(1, N):
-        if time[i][0] >= e:
-            e = time[i][1]
-            cnt += 1
-        elif time[i][1] < e:
-            e = time[i][1]
-    print(f'#{tc}', cnt)
+    print(f'#{tc}', sums)
+
+    # ni = n[0] + k[0]
+    # nj = n[1] + k[1]
+    # if 0 <= ni < N and 0 <= nj < M and arr[ni][nj] == 'L':
+    #     arr[ni][nj] = 1
+    #     sums += n[2] + 1
+    #     q.append((ni, nj, n[2] + 1))

@@ -6,8 +6,12 @@ import pprint
 
 di = [-1, 0, 1, 0]
 dj = [0, 1, 0, -1]
+dij = [(-1,0), (0,1), (1,0), (0,-1)]
 
-
+        for k in dij:
+            ni = n[0] + k[0]
+            nj = n[1] + k[1]
+            if 0<= ni < N and 0 <= nj < M and
 
 '''
 방향에 따라 4^5회의 경우의 수가 나옴

@@ -13,7 +13,7 @@ while True:
     stack = [[0, lst[0], 0]]
     result = [0] * N
     # print(lst)
-    i = N - 1
+    i = N - 1# N이 1이 들어와버리면 for문 진행 안되고 터져버리는듯 항상 끝값 입력해보자.
     for i in range(1, N):
         if stack[-1][1] < lst[i]:
             stack.append([i, lst[i], i])

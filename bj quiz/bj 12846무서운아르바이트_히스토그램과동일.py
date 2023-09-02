@@ -2,9 +2,7 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-lst = []
-for _ in range(N):
-    lst.append(int(input()))
+lst = list(map(int, input().split()))
 
 stack = [[0, lst[0], 0]]
 result = [0] * N

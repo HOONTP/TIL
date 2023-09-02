@@ -2,6 +2,8 @@ import sys
 input = sys.stdin.readline
 '''
 본인이 최소값이 되는 경우에 가질 수 있는 가장 큰 구간합은 몇 인가?
+
+남은 스택 고려하는 거랑 N 이 1인 경우처럼 for문 안돌아갈 경우 고려해서 반례 넣어보기.
 '''
 N = int(input())
 lst = list(map(int, input().split()))

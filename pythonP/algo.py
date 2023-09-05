@@ -1,22 +1,22 @@
 import sys
 input = sys.stdin.readline
 
+def repeat_de(n, m):
+    if m == 0:
+        return 1
+    if (n,m) in repeat:
+        return repeat[(n, m)]
+    repeat[(n, m)] = (repeat_de(n-1, m-1) + repeat_de(n-1, m)) % 1000000007
+    return
+
 N, M = map(int, input().split())
+repeat = {}
+repeat_de(N, M)
+print(repeat[(N, M)])
 
-first = [list(map(int, input().strip().split())) for _ in range(N)]
-
-M, K = map(int,input().split())
-
-second = [list(map(int, input().strip().split())) for _ in range(M)]
-pt = []
-for i in range(N):
-    result = []
-    for j in range(K):
-        mid = 0
-        for k in range(M):
-            mid += first[i][k]*second[k][j]
-        result.append(mid)
-    pt.append(result)
-
-for _ in pt:
-    print(*_)
+# result = 1
+# for i in range(M):
+#     result *= ((N-i)/(M-i))
+#     if result > 1000000007:
+#         result %= 1000000007
+# print(result)

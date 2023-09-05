@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .profile {
+      width: 220px;
+      height: 350px;
+      border: 2px solid white;
+      background-color: rgb(235, 217, 217);
+      display: felx;
+      font-size: small;
+    }
+
+    .imag {
+      height: 180px;
+      width: 180px;
+      border: 1px solid black;
+      display: inline-block;
+      position: relative;
+      top: 10px;
+      left: 20px;
+    }
+    .ima {
+      width: inherit;
+      height: inherit;
+    }
+    .name {
+      text-align: center;
+      background-color: rgba(153, 205, 50, 0.404);
+      font-size: medium;
+      z-index: 3;
+      position: absolute;
+      bottom: -9%;
+      width: inherit;
+      height: 25px;
+    }
+    .introduce {
+      font-size: 12px;
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile">
+    <div class="imag">
+      <img src="profile.jpg" alt="Profile Image" class="ima">
+      <p class="name">Name</p>
+    </div>
+    <p class="introduce">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci unde officiis ad nostrum. Laboriosam mollitia similique provident fuga tenetur saepe sit, amet eaque neque eius quaerat expedita ea illum veniam.</p>
+  </div>
+</body>
+</html>

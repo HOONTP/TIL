@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div p {
+      color: blue;
+      margin-left: 80px;
+      font-size: 30px;
+    }
+    div > p {
+      color: crimson;
+      margin-left: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p>자식</p>
+    <span>
+    <p>손자</p>
+    </span>
+    <p>자식</p>
+  </div>
+</body>
+</html>

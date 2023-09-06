@@ -1,13 +1,6 @@
+66576955
+277914459
 Traceback (most recent call last):
-  File "C:/Users/SSAFY/Desktop/TIL/pythonP/algo.py", line 14, in <module>
-    repeat_de(N, M)
-  File "C:/Users/SSAFY/Desktop/TIL/pythonP/algo.py", line 9, in repeat_de
-    repeat[(n, m)] = (repeat_de(n-1, m-1) + repeat_de(n-1, m)) % 1000000007
-  File "C:/Users/SSAFY/Desktop/TIL/pythonP/algo.py", line 9, in repeat_de
-    repeat[(n, m)] = (repeat_de(n-1, m-1) + repeat_de(n-1, m)) % 1000000007
-  File "C:/Users/SSAFY/Desktop/TIL/pythonP/algo.py", line 9, in repeat_de
-    repeat[(n, m)] = (repeat_de(n-1, m-1) + repeat_de(n-1, m)) % 1000000007
-  [Previous line repeated 1283 more times]
-  File "C:/Users/SSAFY/Desktop/TIL/pythonP/algo.py", line 7, in repeat_de
-    if (n,m) in repeat:
-RecursionError: maximum recursion depth exceeded
+  File "C:/Users/SSAFY/Desktop/TIL/pythonP/algo.py", line 16, in <module>
+    result = top_value * pow(bottom_value, -1, mod_) % mod_ # 파이썬 버전이 pow에 영향이 있는 듯.
+ValueError: pow() 2nd argument cannot be negative when 3rd argument specified

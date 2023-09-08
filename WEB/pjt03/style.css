@@ -1,0 +1,76 @@
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.flx {
+  display: flex;
+
+}
+
+.flx_sec {
+  font-size: 30px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.flx_div {
+  /* flex-direction: row; */
+  /* align-content: end; */
+  width: 100%;
+  margin: 20px;
+}
+
+.div_right {
+  flex-direction: column;
+}
+
+.frontpage {
+  height: 100px;
+  background-color: lightgray;
+}
+
+.intro {
+  height: 150px;
+  background-color: lightblue;
+}
+
+.Contact {
+  height: 250px;
+  /* background-color: greenyellow; */
+  background-color: lightblue;
+}
+
+.skills {
+  height: 150px;
+  /* background-color: burlywood; */
+  background-color: lightblue;
+}
+
+.footer {
+  height: 50px;
+  background-color: black;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 1. not 클래스를 기본적으로 보이지 않도록 설정 */
+/* .not_provide {
+  display: none;
+}
+
+470 아ㅏㅏ래 쟤만 보이도록
+@media (max-width: 600px) {
+  main,
+  section,
+  nav,
+  footer {
+    display: none;
+  }
+  .not_provide {
+    display: block;
+}
+} */

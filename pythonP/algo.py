@@ -31,3 +31,4 @@ if result != -1:
     print(f"7은 인덱스 {result}에서 찾았습니다.")
 else:
     print("7을 찾을 수 없습니다.")
+

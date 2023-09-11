@@ -1,34 +1,47 @@
 import sys
 input = sys.stdin.readline
 
-def binary_search():
-    start = 1
-    end = lst[-1] - lst[0]
+def binary_search(s):
+    global K
+    start = s
+    end = N * N
 
     while start <= end:
 
-        mid = (left + right) // 2  # 중간 인덱스 계산
+        mid = (start + end) // 2  # 중간 인덱스 계산
 
-        if arr[mid] == target:
-            return mid  # 원하는 값이 발견됨
-        elif arr[mid] < target:
-            left = mid + 1  # 중간 값보다 오른쪽에 위치
+        cnt = 0
+        for i in range(1, N+1):
+            S = i
+            E = i*N
+            if E <= mid:
+                cnt += N
+                continue
+            while S <= E:
+                M = (S+E) // 2
+                if M == mid:
+                    cnt += M // i
+                    break
+                elif M > mid:
+                    E = mid - 1
+                else:
+                    S = mid + 1
+            if M != mid:
+                cnt += mid // i
+        if cnt == K:
+            return mid
+        elif cnt > K:
+            end = mid - 1
         else:
-            right = mid - 1  # 중간 값보다 왼쪽에 위치
+            start = mid + 1
+    if cnt < K:
+        return binary_search(s+1)
+    else:
+        return mid
 
-    return -1  # 원하는 값이 리스트에 없음
 
-N, C = map(int, input().split())
+N = int(input())
+K = int(input())
 
-lst = []
-for _ in range(N):
-    lst.append(int(input()))
-lst.sort()
-
-result = binary_search()
-
-if result != -1:
-    print(f"7은 인덱스 {result}에서 찾았습니다.")
-else:
-    print("7을 찾을 수 없습니다.")
-
+result = binary_search(1)
+print(result)

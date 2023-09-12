@@ -13,7 +13,9 @@ def binary_search():
                 cnt += mid // i
             else:
                 cnt += N
-        if cnt >= K:
+        if cnt == K:
+            return mid # mid 가 행렬 내애 없는 어떤 수 일 수 있기 때문에 안되나?
+        elif cnt > K:
             end = mid - 1
         else:
             start = mid + 1

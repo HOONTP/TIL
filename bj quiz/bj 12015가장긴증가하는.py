@@ -14,7 +14,9 @@ def binary(arr, n):
         else:
             return -1
     return start
-
+'''
+새로운 수를 가장긴 상태인 리스트에서 최적의 자리에 심어준다는 느낌
+'''
 
 N = int(input())
 

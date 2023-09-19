@@ -1,51 +1,18 @@
 import sys
 input = sys.stdin.readline
+sys.setrecursionlimit(1000000000)
+di = [-1,1,0,0]
+dj = [0,0,-1,1]
 
-T = int(input())
+def dfs(x,y):
+    stack = []
+    stack.append((x,y))
 
-def merge_split(start, end):
-    if start < end:
-        n = end - start + 1
-        mid = start + n//2 - 1
+# 이미 1로 처리된 지점을 밟는 순간 돌아가고? 1을 밟는 케이스 기준 교차점에 +1을 해주고 그 값으로 또 돌아가면서 +1해주는 식이 될까?
+M, N = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(M)]
+can_lst = [[0]*N for _ in range(M)]
 
-        merge_split(start, mid)
-        merge_split(mid+1, end)
-
-        merge(start, mid, end)
-    return
-
-def merge(left, mid, right):
-    global cnt
-
-    if lst[mid] > lst[right]:
-        cnt += 1
-    i = left
-    j = mid+1
-    k = left
-    while (i <= mid) and (j <= right):
-        if lst[i] <= lst[j]:
-            arr[k] = lst[i]
-            i += 1
-            k += 1
-        else:
-            arr[k] = lst[j]
-            j += 1
-            k += 1
-    while i <= mid:
-        arr[k] = lst[i]
-        i += 1
-        k += 1
-    while j <= right:
-        arr[k] = lst[j]
-        j += 1
-        k += 1
-    lst[left:right+1] = arr[left:right+1]
-
-for tc in range(1, T+1):
-    N = int(input())
-    lst = list(map(int, input().split()))
-    arr = [0] * N
-    cnt = 0
-    merge_split(0, N-1)
-
-    print(f'#{tc} {lst[N//2]} {cnt}')
+cnt = 0
+backT(0,0,{(0,0)})
+print(cnt)

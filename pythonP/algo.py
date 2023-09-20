@@ -1,35 +1,28 @@
-import sys
-input = sys.stdin.readline
-sys.setrecursionlimit(1000000000)
-di = [-1,1,0,0]
-dj = [0,0,-1,1]
+def bfs(A, B):
+    q = []
+    q.append((A, 0))
+    visted[A] = 1
 
-def backT(x, y, visted):
-    global cnt
+    while q:
+        n = q.pop(0)
+        if n[0] == B:
+            print(f'#{t}', n[1])
+            return
+        cnt = n[1]+1
+        if n[0]*2 <= B+10 and visted[n[0]*2] == 0:
+            q.append((n[0]*2, cnt))
+            visted[n[0]*2] = 1
+        if n[0] > 10 and visted[n[0]-10] == 0:
+            q.append((n[0] - 10, cnt))
+            visted[n[0] - 10] = 1
+        if n[0] > 1 and visted[n[0]-1] == 0:
+            q.append((n[0] - 1, cnt))
+            visted[(n[0] - 1)] = 1
+        if n[0]+1 <= B+10 and visted[n[0]+1] == 0:
+            q.append((n[0] + 1, cnt))
+            visted[n[0] + 1] = 1
 
-    if x == M-1 and y == N-1:
-        for i in visted:
-            can_lst[i[0]][i[1]] += 1
-        cnt += 1
-        return
-    if can_lst[x][y] > 0:
-        for i in visted:
-            can_lst[i[0]][i[1]] = can_lst[x][y]
-        cnt += can_lst[x][y]
-        return
-
-    for k in range(4):
-        ni = x + di[k]
-        nj = y + dj[k]
-        if 0<=ni<M and 0<=nj<N and arr[ni][nj] < arr[x][y] and (ni,nj) not in visted:
-            visted.add((ni,nj))
-            backT(ni, nj, visted)
-            visted.remove((ni, nj))
-
-M, N = map(int, input().split())
-arr = [list(map(int, input().split())) for _ in range(M)]
-can_lst = [[0]*N for _ in range(M)]
-
-cnt = 0
-backT(0,0,{(0,0)})
-print(cnt)
+for t in range(1, int(input())+1):
+    A, B = map(int, input().split())
+    visted = [0] * (B + 11)
+    bfs(A, B)

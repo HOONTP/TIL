@@ -13,7 +13,8 @@ def uni_set(a, b):
 
 def prim(start, end):
     sums = [0] * (V + 1)
-    q = deque()
+    visited = [False] * (V + 1)
+    q = []
     q.append(start)
 
     while q:
@@ -22,13 +23,13 @@ def prim(start, end):
             for i, w in lst[n]:
                 if i == end:
                     sums[i] = sums[n] + w
-                    # lst[start].append((i, sums[i]))
+                    lst[start].append((i, sums[i]))
                     return sums[end]
-                if sums[i] == 0:
+                if visited[i] == False:
                     sums[i] = sums[n] + w
-                    # lst[start].append((i, sums[i]))
+                    visited[i] = True
                     q.append(i)
-    return 0
+                    lst[start].append((i, sums[i]))
 
 for t in range(1, int(input())+1):
     V, E = map(int, input().split())

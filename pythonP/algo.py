@@ -1,5 +1,6 @@
 import sys
 input = sys.stdin.readline
+sys.setrecursionlimit(10**9)
 
 def find(x):
     if x == dic_[x]:
@@ -10,29 +11,23 @@ def find(x):
 def uniset(a, b):
     A = find(a)
     B = find(b)
-
     if A != B:
         dic_[A] = B
+        return 0
+    else:
+        return 1
 
-N = int(input())
-M = int(input())
+def prt():
+    for _ in range(M):
+        a, b = map(int, input().split())
+        same = uniset(a, b)
+        # 두개의 부모가 같은 순간 사이클이 형성된다.
+        if same:
+            return _+1
+    return 0
 
-arr = [list(map(int, input().split())) for _ in range(N)]
-lst = list(map(int, input().split()))
+N, M = map(int, input().split())
 dic_ = list(range(N))
 
-for i in range(N):
-    for j in range(N):
-        if arr[i][j] == 1:
-            uniset(i, j)
-
-result = True
-for i in range(M-1):
-    if find(lst[i]-1) == find(lst[i+1]-1):
-        pass
-    else:
-        result = False
-        print('NO')
-        break
-if result:
-    print('YES')
+result = prt()
+print(result)

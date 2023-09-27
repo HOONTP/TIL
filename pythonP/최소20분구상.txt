@@ -1,6 +1,7 @@
 from collections import deque
 import sys
 input = sys.stdin.readline
+sys.setrecursionlimit(10**9) #그냥 이런식으로 깊이를 넓히는게 어딧냐고;
 
 import pprint
 

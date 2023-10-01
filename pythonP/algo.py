@@ -24,5 +24,7 @@ def dijk(start, end):
 
 V, E = map(int, input().split())
 visited = [0]*(100002)
+
 result = dijk(V, E)
+
 print(result)

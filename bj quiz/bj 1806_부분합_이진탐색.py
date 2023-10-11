@@ -30,6 +30,8 @@ for i in range(N):
     result = binary(arr, i)
     if result and result < answer:
         answer = result
+        if answer == 1:
+            break
 
 if answer == float('inf'):
     print(0)

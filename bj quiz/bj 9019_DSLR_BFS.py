@@ -37,7 +37,3 @@ for _ in range(int(input())):
 
     result = bfs(A)
     print(result)
-
-
-    lst = ['']*(10000)
-    print(lst)

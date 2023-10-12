@@ -1,43 +1,31 @@
 import sys
 input = sys.stdin.readline
 from collections import deque
+import heapq
 
-def bfs(a):
-    q = deque()
-    q.append((a, ''))
-    visited = [0]*10000
-
+def tree(graph):
+    start = 1
+    q = []
+    heapq.heappush(q, (0, start))
+    visited = [0]*(V+1)
+    mst_sums = 0
     while q:
-        n, ans = q.popleft()
-        if n == B:
-            return ans
-        nstr = str(n).zfill(4)
-        Lnum = nstr[1:4] + nstr[0]
-        Rnum = nstr[3] + nstr[:3]
-        # print(Lnum, Rnum)
-        j = 2*n % 10000
-        k = (n-1) % 10000
-        l = int(Lnum) % 10000
-        p = int(Rnum) % 10000
-        if visited[j] == 0:
-            q.append((j, ans+'D'))
-            visited[j] = 1
-        if visited[k] == 0:
-            q.append((k, ans+'S'))
-            visited[k] = 1
-        if visited[l] == 0:
-            q.append((l, ans+'L'))
-            visited[l] = 1
-        if visited[p] == 0:
-            q.append((p, ans+'R'))
-            visited[p] = 1
+        w, now = heapq.heappop(q)
+        if visited[now] == 0:
+            visited[now] = 1
+            mst_sums += w
+            for node, weight in graph[now]:
+                if visited[node] == 0:
+                    heapq.heappush(q, (weight, node))
+    return mst_sums
 
-for _ in range(int(input())):
-    A, B = map(int, input().split())
+V, E = map(int, input().split())
+graph = [[] for _ in range(V+1)]
+for _ in range(E):
+    a, b, w = map(int, input().split())
+    graph[a].append((b, w))
+    graph[b].append((a, w))
 
-    result = bfs(A)
-    print(result)
-
-
-    lst = ['']*(10000)
-    print(lst)
+# print(graph)
+result = tree(graph)
+print(result)

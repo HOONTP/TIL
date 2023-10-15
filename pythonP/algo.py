@@ -1,9 +1,9 @@
 import sys
 input = sys.stdin.readline
 
-def binary(arr, n, E):
+def binary(arr, n):
     start = 0
-    end = E - 1
+    end = s_end - 1
 
     while start <= end:
         mid = (start + end) // 2
@@ -14,39 +14,24 @@ def binary(arr, n, E):
         else:
             return -1
     return start
-
+'''
+새로운 수를 가장긴 상태인 리스트에서 최적의 자리에 심어준다는 느낌
+'''
 
 N = int(input())
 
 lst = list(map(int, input().split()))
-stack = [lst[0]]
+stack = [lst[0]] # stack을 떠올렸지만 스택으로 쓰진 않음.
 s_end = 1
-results = []
-results.append([stack, 1])
-for i in lst:
-    for j in range(s_end):
-        if results[j][0][-1] < i:
-            results[j][1] += 1
-            results[j][0].append(i)
-        elif results[j][0][-1] > i:
-            change = binary(results[j][0], i, results[j][1])
-            if change != -1:
-                new = results[j][0][:change]
-                new.append(i)
-                results.append([new, change+1])
-                s_end += 1
-    leng = s_end
-    for k in range(leng-1, 0, -1):
-        if results[k-1][1] <= results[k][1]:
-            results.pop(k-1)
-            s_end -= 1
-        print(results)
-target = 0
-value = 0
-for i in range(s_end):
-    if value < results[i][1]:
-        target = i
-        value = results[i][1]
 
-print(value)
-print(*results[target][0])
+for i in lst:
+    if stack[-1] < i:
+        s_end += 1
+        stack.append(i)
+    elif stack[-1] > i:
+        change = binary(stack, i)
+        if change != -1:
+            stack[change] = i
+
+print(s_end)
+print(stack)

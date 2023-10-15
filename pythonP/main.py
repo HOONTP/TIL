@@ -21,16 +21,22 @@ def binary(arr, n):
 N = int(input())
 
 lst = list(map(int, input().split()))
-stack = [lst[0]] # stack을 떠올렸지만 스택으로 쓰진 않음.
-s_end = 1
+# stack = [[] for _ in range(N)] # stack을 떠올렸지만 스택으로 쓰진 않음.
+stack = []
+stack.append((0, lst[0]))
 
+print(stack)
 for i in lst:
-    if stack[-1] < i:
-        s_end += 1
-        stack.append(i)
-    elif stack[-1] > i:
-        change = binary(stack, i)
-        if change != -1:
-            stack[change] = i
+    if stack[-1]:
+        stack[j][0] += 1
+        stack[j][1].append(i)
+        # elif stack[j][1][-1] > i:
+        #     change = binary(stack, i)
+        #     if change != -1:
+        #         stack[change] = i
+    else:
+        stack.append([1,[i]])
 
-print(s_end)
+# print(stack)
+print(stack[0][0])
+print(*stack[0][1])

@@ -1,37 +1,33 @@
 import sys
 input = sys.stdin.readline
+from collections import deque
 
-def binary(arr, n):
-    start = 0
-    end = s_end - 1
-
-    while start <= end:
-        mid = (start + end) // 2
-        if arr[mid] < n:
-            start = mid + 1
-        elif arr[mid] > n:
-            end = mid - 1
-        else:
-            return -1
-    return start
-'''
-새로운 수를 가장긴 상태인 리스트에서 최적의 자리에 심어준다는 느낌
-'''
+def bfs(node):
+    q = deque()
+    q.append((0, node))
+    mx = 0
+    visited = [0] * (N+1)
+    visited[node] = 1
+    while q:
+        wt, n = q.popleft()
+        if mx < wt:
+            mx = wt
+            node = n
+        for v, weight in lst[n]:
+            if visited[v] == 0:
+                q.append((wt+weight, v))
+                visited[v] = 1
+    return node, mx
 
 N = int(input())
+lst = [[] for _ in range(N+1)]
 
-lst = list(map(int, input().split()))
-stack = [lst[0]] # stack을 떠올렸지만 스택으로 쓰진 않음.
-s_end = 1
+for _ in range(N-1):
+    a, b, w = map(int, input().split())
+    lst[a].append((b, w))
+    lst[b].append((a, w))
 
-for i in lst:
-    if stack[-1] < i:
-        s_end += 1
-        stack.append(i)
-    elif stack[-1] > i:
-        change = binary(stack, i)
-        if change != -1:
-            stack[change] = i
 
-print(s_end)
-print(stack)
+first, m = bfs(N)
+second, mx_val = bfs(first)
+print(mx_val)

@@ -1,46 +1,46 @@
 import sys
 input = sys.stdin.readline
-sys.setrecursionlimit(10**9)
+# sys.setrecursionlimit(10**9)
+import heapq
 
-def find(x):
-    if dic_[x] == x:
-        return x
-    dic_[x] = find(dic_[x])
-    return dic_[x]
+def dijk(A, B):
+    q = []
+    heapq.heappush(q, (0, A))
+    visited = [float('inf')] * (N+1)
+    visited[A] = 0
+    load[A] = A
 
-def unionset(a, b):
-    A = find(a)
-    B = find(b)
+    while q:
+        w, n = heapq.heappop(q)
+        # print(log)
+        print(load)
+        print(visited)
+        if n == B:
+            return w
+        for weight, node in arr[n]:
+            sums = w+weight
+            if sums < visited[node]:
+                visited[node] = sums
+                load[node] = n
+                heapq.heappush(q, (sums, node))
 
-    if A == B:
-        dic_[A] = 0
-    elif A == 0:
-        dic_[B] = 0
-    elif B == 0:
-        dic_[A] = 0
-    else:
-        dic_[A] = B
+N = int(input())
+M = int(input())
 
-tc = 0
-while True:
-    N, E = map(int, input().split())
-    tc += 1
-    if N == 0 and E == 0:
-        break
+arr = [[] for _ in range(N+1)]
+load = [0] * (N + 1)
 
-    dic_ = list(range(N+1))
+for _ in range(M):
+    a, b, W = map(int, input().split())
+    arr[a].append((W, b))
+A, B = map(int, input().split())
 
-    for _ in range(E):
-        a, b = map(int, input().split())
-        unionset(a, b)
+result = dijk(A, B)
+print(load)
+print(result[0])
+print(len(result[1]))
+print(*result[1])
 
-    for i in range(1, N+1):
-        find(i)
-    result = set(dic_)
-    ans = len(result) - 1
-    if ans == 0:
-        print(f"Case {tc}: No trees.")
-    elif ans == 1:
-        print(f"Case {tc}: There is one tree.")
-    else:
-        print(f"Case {tc}: A forest of {ans} trees.")
+# 최소 비용
+# 들르는 개수 - 무시
+# 도시 번호 순서대로

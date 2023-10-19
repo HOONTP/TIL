@@ -1,3 +1,15 @@
-Case 1: A forest of 3 trees.
-Case 2: There is one tree.
-Case 3: No trees.
+[0, 1, 0, 0, 0, 0]
+[inf, 0, inf, inf, inf, inf]
+[0, 1, 1, 1, 1, 1]
+[inf, 0, 2, 3, 1, 10]
+[0, 1, 1, 1, 1, 4]
+[inf, 0, 2, 3, 1, 4]
+[0, 1, 1, 1, 1, 4]
+[inf, 0, 2, 3, 1, 4]
+[0, 1, 1, 1, 1, 4]
+[inf, 0, 2, 3, 1, 4]
+[0, 1, 1, 1, 1, 4]
+Traceback (most recent call last):
+  File "C:/Users/SSAFY/Desktop/TIL/pythonP/main.py", line 40, in <module>
+    print(result[0])
+TypeError: 'int' object is not subscriptable (key 0)

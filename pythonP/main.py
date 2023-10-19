@@ -1,23 +1,29 @@
 import sys
 input = sys.stdin.readline
-sys.setrecursionlimit(10**9)
+sys.setrecursionlimit(10**4)
 
-def find(x):
-    if dic_[x] == x:
-        return x
-    dic_[x] = find(dic_[x])
-    return dic_[x]
+#프리 - 루좌우
+#인오더 - 좌루우
+#포스트 - 좌우루
+def Pre_order(inorder, s, e):
+    if not inorder:
+        return []
+    # print(inorder, Postorder, s, e)
+    root = Postorder[e]
+    mid = inorder.index(root)
 
-def unionset(a, b):
-    A = find(a)
-    B = find(b)
+    left_in = inorder[:mid]
+    right_in = inorder[mid+1:]
 
-    if A == B:
-        dic_[A] = 0
-    elif A == 0:
-        dic_[B] = 0
-    elif B == 0:
-        dic_[A] = 0
-    else:
-        dic_[A] = B
+    left_ = Pre_order(left_in, s, s+mid-1)
+    right_ = Pre_order(right_in, s+mid, e-1)
 
+    return [root] + left_ + right_
+
+
+N = int(input())
+Inorder = list(map(int, input().split()))
+Postorder = list(map(int, input().split()))
+
+result = Pre_order(Inorder, 0, N-1)
+print(*result)

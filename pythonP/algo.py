@@ -1,43 +1,37 @@
 import sys
-input = sys.stdin.read
-sys.setrecursionlimit(10**9)
+input = sys.stdin.readline
 
-class Tree:
-    def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
+def floyd(dist):
+    # 모든 정점에 대한 최단 경로 갱신
+    for k in range(V):
+        for i in range(V):
+            for j in range(V):
+                if dist[i][k] != 0 and dist[k][j] != 0:
+                    if i != j:
+                        if dist[i][j] == 0:
+                            dist[i][j] = dist[i][k] + dist[k][j]
+                            lst[i][j] = lst[i][k] + lst[k][j]
+                        elif dist[i][k] + dist[k][j] < dist[i][j]:
+                            dist[i][j] = dist[i][k] + dist[k][j]
+                            lst[i][j] = lst[i][k] + lst[k][j]
+    return dist
 
+V = int(input())
+E = int(input())
 
-def build(preorder):
-    if not preorder:
-        return None
-
-    root_value = preorder[0]
-    root = Tree(root_value)
-
-    if len(preorder) > 1:
-        index = 1
-        while index < len(preorder) and preorder[index] <= root_value:
-            index += 1
-
-        root.left = build(preorder[1:index])
-        root.right = build(preorder[index:])
-    return root
-
-def SearchTree(root):
-    if root is None:
-        return []
-    SearchTree(root.left)
-    SearchTree(root.right)
-    print(root.value)
-
-
-In = input().strip()
-arr = list(map(int, In.split()))
-# print(arr)
-root = build(arr)
-# print(root)
-result = SearchTree(root)
-# for i in result:
-#     print(i)
+arr = [[0]*(V) for _ in range(V)]
+lst = [[[k+1] for k in range(V)] for _ in range(V)]
+for __ in range(E):
+    a, b, v = map(int, input().split())
+    if arr[a-1][b-1] == 0 or v < arr[a-1][b-1]:
+        arr[a-1][b-1] = v
+result = floyd(arr)
+print(lst)
+for re in result:
+    print(*re)
+for i in range(V):
+    for j in range(V):
+        if result[i][j] == 0:
+            print(0)
+        else:
+            print(len(lst[i][j])+1, i+1 ,*lst[i][j])

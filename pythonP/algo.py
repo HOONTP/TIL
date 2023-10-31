@@ -1,37 +1,37 @@
 import sys
 input = sys.stdin.readline
+import heapq
 
-def floyd(dist):
-    # 모든 정점에 대한 최단 경로 갱신
-    for k in range(V):
-        for i in range(V):
-            for j in range(V):
-                if dist[i][k] != 0 and dist[k][j] != 0:
-                    if i != j:
-                        if dist[i][j] == 0:
-                            dist[i][j] = dist[i][k] + dist[k][j]
-                            lst[i][j] = lst[i][k] + lst[k][j]
-                        elif dist[i][k] + dist[k][j] < dist[i][j]:
-                            dist[i][j] = dist[i][k] + dist[k][j]
-                            lst[i][j] = lst[i][k] + lst[k][j]
-    return dist
+def distance(A, B):
+    sums = ((A[0]-B[0])**2 + (A[1]-B[1])**2)**(0.5)
+    return sums
 
-V = int(input())
-E = int(input())
+def dijk(n):
+    q = []
+    heapq.heappush(q, (0, n))
 
-arr = [[0]*(V) for _ in range(V)]
-lst = [[[k+1] for k in range(V)] for _ in range(V)]
-for __ in range(E):
-    a, b, v = map(int, input().split())
-    if arr[a-1][b-1] == 0 or v < arr[a-1][b-1]:
-        arr[a-1][b-1] = v
-result = floyd(arr)
+    while q:
+        w, node = heapq.heappop(q)
+
+        for i in range(N):
+            if node != i and n != i:
+                if w + lst[node][i] < result[n][i]:
+                pass
+
+N = int(input())
+
+arr = []
+for _ in range(N):
+    arr.append(list(map(float, input().split())))
+print(arr)
+
+lst = [[0]*N for _ in range(N)]
+for i in range(N):
+    min_value = float('inf')
+    for j in range(N):
+        if i != j:
+            dist = distance(arr[i],arr[j])
+            lst[i][j] = round(dist, 3)
+
+result = [[0]*N for _ in range(N)]
 print(lst)
-for re in result:
-    print(*re)
-for i in range(V):
-    for j in range(V):
-        if result[i][j] == 0:
-            print(0)
-        else:
-            print(len(lst[i][j])+1, i+1 ,*lst[i][j])

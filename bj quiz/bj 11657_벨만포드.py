@@ -2,6 +2,8 @@ import sys
 input = sys.stdin.readline
 import heapq
 
+# 최대 N-1 만큼의 거리일 경우 때문에 N-1 회 돌리는거고
+# 모든 간선을 한 번 최적화하는 행위가 포문에 담겨있음
 def bellman_ford(start):
     distance = [float("inf")] * (V + 1)
     distance[start] = 0

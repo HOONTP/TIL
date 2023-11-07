@@ -1,13 +1,13 @@
 import sys
 input = sys.stdin.readline
 
-numbers = list(map(int, input().split()))
+numbers = list(map(int, input().split())) # 프로그래머스 디버깅 안 좋다 ...
 def solution(numbers):
     # 7 3 3 1 1 / 15 7 7 3 3 1 1 / 31 ,, 2^n-1
     answer = []
     def scanTree(nums, start, end): # 1101111 , 0 , 6 / c = 3 / 0 1 2 / 4 5 6 / 0 / 2 / 4 / 6
         center = start + (end - start) // 2
-        print(start,center, end)
+        # print(start,center, end)
         if start == end:
             return True
         else:
@@ -21,7 +21,6 @@ def solution(numbers):
                 else:
                     return False
         if left and right:
-            print(left, right)
             return True
         else:
             return False
@@ -37,7 +36,7 @@ def solution(numbers):
         # i 는 2**n-1에서 n값
         num = ((2**i - 1)-N)*'0' + num
         N = len(num) # 000000)1101111 N-1개까지 붙여짐
-        print(num, N)
+        # print(num, N)
         isTree = scanTree(num, 0, N-1)
         if isTree == True:
             answer.append(1)

@@ -25,5 +25,5 @@ visited = list([0]*C for _ in range(R))
 
 visited[R-1][0] = 1
 result = 0
-backT(R-1, 0, visited, 1)
+backT(R-1, 0, visited, 1) # 시작점이 1인게 맘에 들지 않음.. ㅠ
 print(result)

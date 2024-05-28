@@ -21,14 +21,9 @@ def backT(visit, val, now):
 
 N, K = map(int, input().split())
 MAP = [list(map(int, input().split())) for _ in range(N)]
-
-for i in range(N):
-    for j in range(N):
-        if i == j:
-            continue
-        for k in range(N):
-            if i == k or j == k:
-                continue
+for k in range(N):
+    for i in range(N):
+        for j in range(N):
             if MAP[i][j] > MAP[i][k] + MAP[k][j]:
                 MAP[i][j] = MAP[i][k] + MAP[k][j]
 

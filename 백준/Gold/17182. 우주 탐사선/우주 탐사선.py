@@ -29,8 +29,8 @@ for i in range(N):
         for k in range(N):
             if i == k or j == k:
                 continue
-            if MAP[i][k] > MAP[i][j] + MAP[j][k]:
-                MAP[i][k] = MAP[i][j] + MAP[j][k]
+            if MAP[i][j] > MAP[i][k] + MAP[k][j]:
+                MAP[i][j] = MAP[i][k] + MAP[k][j]
 
 minValue = 999999999
 visited = list(0 for _ in range(N))
